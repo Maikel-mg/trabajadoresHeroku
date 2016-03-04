@@ -1,0 +1,27 @@
+{
+  "name": "trabajadores_heroku",
+  "version": "0.1.0",
+  "description": "Prueba de heroku",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maikel-mg/trabajadoresHeroku.git"
+  },
+  "keywords": [
+    "heroku",
+    "node",
+    "backbone"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maikel-mg/trabajadoresHeroku/issues"
+  },
+  "homepage": "https://github.com/Maikel-mg/trabajadoresHeroku#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
