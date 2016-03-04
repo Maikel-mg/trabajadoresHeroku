@@ -11,11 +11,21 @@ app.get('/', function (req, res) {
 });
 
 app.get('/db' , function (req, res) {
-  mongoose.connect('mongodb://test:test@ds039321.mlab.com:39321/prueba', function(err, res) {
-    if(err) {
-      console.log('ERROR: connecting to Database. ' + err);
-    }
-  });
+  var db;
+  try {
+    db = mongoose.createConnection('mongodb://user:pass@localhost:port/database');
+    console.log('OK : connecting to Database. ');
+  } catch (e) {
+    console.log('ERROR: connecting to Database. ' + e);
+  } finally {
+    console.log('FINALLY: connecting to Database. ' );
+  }
+
+  // mongoose.connect('mongodb://test:test@ds039321.mlab.com:39321/prueba', function(err, res) {
+  //   if(err) {
+  //     console.log('ERROR: connecting to Database. ' + err);
+  //   }
+  // });
 });
 
 app.listen(app.get('port'), function() {
