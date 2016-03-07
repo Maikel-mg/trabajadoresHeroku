@@ -19,7 +19,7 @@ app.get('/dbmongo' , function (req, res) {
   } catch (e) {
     console.log('ERROR: connecting to Database. ' + e);
   } finally {
-  node   console.log('FINALLY: connecting to Database. ' );
+    console.log('FINALLY: connecting to Database. ' );
   }
 
   // mongoose.connect('mongodb://test:test@ds039321.mlab.com:39321/prueba', function(err, res) {
