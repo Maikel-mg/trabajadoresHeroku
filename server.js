@@ -13,10 +13,9 @@ var schema = mongoose.Schema({ name: 'string' });
 
 
 app.set('port', (process.env.PORT || 5000));
-
 app.use('/public', express.static(__dirname + '/public'));
 
-
+console.log('ENVIROMENT ' + process.env.NODE_ENV);
 
 try {
   console.log('MONGOLAB_URI :: ' + process.env.MONGOLAB_URI);
