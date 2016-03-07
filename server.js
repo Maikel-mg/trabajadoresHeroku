@@ -2,20 +2,13 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
+var Trabajador = require('./server/models/trabajador.js');
+var Cat = require('./server/models/cat.js');
 
 var db;
-var trabajadorSchema = new mongoose.Schema({
-  id: String,
-  nombre: String
-});
-var Trabajador = mongoose.model('trabajadores', trabajadorSchema);
-var schema = mongoose.Schema({ name: 'string' });
-
 
 app.set('port', (process.env.PORT || 5000));
 app.use('/public', express.static(__dirname + '/public'));
-
-console.log('ENVIROMENT ' + process.env.NODE_ENV);
 
 try {
   console.log('MONGOLAB_URI :: ' + process.env.MONGOLAB_URI);
@@ -80,9 +73,6 @@ app.get('/cats' , function (req, res) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   try {
-    var Cat = db.model('Cat', schema);
-
-
     Cat.find(function (err, docs) {
       if (err) {
       console.log('REEORmeow' + error);
@@ -96,20 +86,11 @@ app.get('/cats' , function (req, res) {
     console.log('FINALLY: connecting to Database. ' );
   }
 
-  // mongoose.connect('mongodb://test:test@ds039321.mlab.com:39321/prueba', function(err, res) {
-  //   if(err) {
-  //     console.log('ERROR: connecting to Database. ' + err);
-  //   }
-  // });
 });
 
 
 app.get('/catsCount' , function (req, res) {
-
   try {
-    var Cat = db.model('Cat', schema);
-
-
     Cat.count(function (err, count) {
       if (err) {
         console.log('REEORmeow' + error);
