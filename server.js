@@ -78,9 +78,7 @@ app.get('/cats' , function (req, res) {
     var Cat = db.model('Cat', schema);
 
 
-    var query = Cat.find({}, null, { skip: 10 });
-    var promise = query.exec();
-    promise.addBack(function (err, docs) {
+    Cat.find(function (err, docs) {
       if (err) {
       console.log('REEORmeow' + error);
       }
