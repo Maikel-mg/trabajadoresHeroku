@@ -6,6 +6,7 @@ var trabajadorSchema = new mongoose.Schema({
   nombre: String
 });
 var Trabajador = mongoose.model('trabajadores', trabajadorSchema);
+var schema = mongoose.Schema({ name: 'string' });
 
 var nuevo;
 app.set('port', (process.env.PORT || 5000));
@@ -22,24 +23,19 @@ app.get('/dbmongo' , function (req, res) {
     //db = mongoose.createConnection('mongodb://maikelmg:maikelmg@ds039321.mlab.com:39321/prueba');
     console.log('MONGOLAB_URI :: ' + process.env.MONGOLAB_URI);
     db = mongoose.createConnection(process.env.MONGOLAB_URI);
-    console.log('OK : connecting to Database. ');
 
+    console.log('OK : connecting to Database. ');
     console.log('OK : queriying users. ');
 
-    nuevo = new Trabajador({
-            id:    '0001',
-            nombre : 'Maikel'
-        });
 
-    nuevo.save(function(err, trabajador) {
-        if(err) return res.status(500).send( err.message);
-        res.status(200).jsonp(trabajador);
-    });
+    var Cat = db.model('Cat', schema);
 
-    Trabajador.find({}, function(err, users) {
-      if (err) return console.error(err);
-      console.log('OK-POST : queriying users. ');
-      res.json(users);
+    var kitty = new Cat({ name: 'Zildjian' });
+    kitty.save(function (err) {
+      if (err) {
+      console.log('REEORmeow' + error);
+      }
+      console.log('meow');
     });
 
   } catch (e) {
