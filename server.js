@@ -13,8 +13,22 @@ app.get('/', function (req, res) {
 app.get('/dbmongo' , function (req, res) {
   var db;
   try {
-    db = mongoose.createConnection('mongodb://maikelmg:maikelmg@@ds039321.mlab.com:39321/prueba');
+    db = mongoose.createConnection('mongodb://maikelmg:maikelmg@ds039321.mlab.com:39321/prueba');
+
     console.log('OK : connecting to Database. ');
+    var userSchema = new mongoose.Schema({
+      id: String,
+      nombre: String
+    });
+    var User = mongoose.model('usuarios', userSchema);
+    console.log('OK : queriying users. ');
+
+    User.find({}, function(err, users) {
+      if (err) return console.error(err);
+      console.log('OK-POST : queriying users. ');
+      res.json(users);
+    });
+
   } catch (e) {
     console.log('ERROR: connecting to Database. ' + e);
   } finally {
