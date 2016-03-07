@@ -55,7 +55,7 @@ app.get('/dbmongo' , function (req, res) {
     console.log('OK : queriying users. ');
 
 
-    var Cat = db.model('Cat', schema);
+    var Cat = db.model('Cat', catSchema);
 
     var kitty = new Cat({ name: 'Zildjian' });
     kitty.save(function (err) {
@@ -83,7 +83,7 @@ app.get('/cats' , function (req, res) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   try {
-    var Cat = db.model('Cat', schema);
+    var Cat = db.model('Cat', catSchema);
 
     Cat.find(function (err, docs) {
       if (err) {
