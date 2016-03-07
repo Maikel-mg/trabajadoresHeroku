@@ -100,6 +100,35 @@ app.get('/cats' , function (req, res) {
   // });
 });
 
+
+app.get('/catsCount' , function (req, res) {
+
+  try {
+    var Cat = db.model('Cat', schema);
+
+
+    Cat.count(function (err, count) {
+      if (err) {
+        console.log('REEORmeow' + error);
+      }
+      console.log('there are %d jungle adventures', count);
+      res.send(count);
+    });
+  } catch (e) {
+    console.log('ERROR: connecting to Database. ' + e);
+  } finally {
+    console.log('FINALLY: connecting to Database. ' );
+  }
+
+  // mongoose.connect('mongodb://test:test@ds039321.mlab.com:39321/prueba', function(err, res) {
+  //   if(err) {
+  //     console.log('ERROR: connecting to Database. ' + err);
+  //   }
+  // });
+});
+
+
+
 // app.listen(app.get('port'), function() {
 //   console.log('Node app is running on port', app.get('port'));
 // });
