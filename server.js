@@ -38,7 +38,7 @@ app.all('/', function(req, res, next) {
  });
 
 app.get('/', function (req, res) {
-  res.send('Hello world from github');
+  res.send('Hello world from github ' + process.env.NODE_ENV);
 });
 
 app.get('/dbmongo' , function (req, res) {
