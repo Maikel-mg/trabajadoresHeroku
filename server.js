@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
-//var CatRoutes = require('./server/routes/cats.js');
+var CatRoutes = require('./server/routes/cats.js');
 //var Trabajador = require('./server/models/trabajador.js');
 //var Cat = require('./server/models/cat.js');
 
