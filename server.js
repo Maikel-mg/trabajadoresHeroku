@@ -77,6 +77,8 @@ app.get('/dbmongo' , function (req, res) {
 });
 
 app.get('/cats' , function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   try {
     var Cat = db.model('Cat', schema);
