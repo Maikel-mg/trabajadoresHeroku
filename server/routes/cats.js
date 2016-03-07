@@ -1,4 +1,4 @@
-var Cat = require(__dirname + './server/models/cat.js');
+var Cat = require('./models/cat.js');
 var express = require('express');
 var router = express.Router;
 
