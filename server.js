@@ -38,7 +38,7 @@ app.all('/', function(req, res, next) {
  });
 
 
-app.use('v1/cats/', CatRoutes);
+//app.use('v1/cats/', CatRoutes);
 
 app.get('/', function (req, res) {
   res.send('Hello world from github ' + process.env.NODE_ENV);
