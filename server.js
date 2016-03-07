@@ -19,8 +19,9 @@ app.get('/', function (req, res) {
 app.get('/dbmongo' , function (req, res) {
   var db;
   try {
-    db = mongoose.createConnection('mongodb://maikelmg:maikelmg@ds039321.mlab.com:39321/prueba');
-
+    //db = mongoose.createConnection('mongodb://maikelmg:maikelmg@ds039321.mlab.com:39321/prueba');
+    console.log('MONGOLAB_URI :: ' + process.env.MONGOLAB_URI);
+    db = mongoose.createConnection(process.env.MONGOLAB_URI);
     console.log('OK : connecting to Database. ');
 
     console.log('OK : queriying users. ');
