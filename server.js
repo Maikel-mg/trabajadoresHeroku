@@ -1,7 +1,13 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var trabajadorSchema = new mongoose.Schema({
+  id: String,
+  nombre: String
+});
+var Trabajador = mongoose.model('trabajadores', trabajadorSchema);
 
+var nuevo;
 app.set('port', (process.env.PORT || 5000));
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -16,14 +22,20 @@ app.get('/dbmongo' , function (req, res) {
     db = mongoose.createConnection('mongodb://maikelmg:maikelmg@ds039321.mlab.com:39321/prueba');
 
     console.log('OK : connecting to Database. ');
-    var userSchema = new mongoose.Schema({
-      id: String,
-      nombre: String
-    });
-    var User = mongoose.model('usuarios', userSchema);
+
     console.log('OK : queriying users. ');
 
-    User.find({}, function(err, users) {
+    nuevo = new Trabajador({
+            id:    '0001',
+            nombre : 'Maikel'
+        });
+
+    nuevo.save(function(err, trabajador) {
+        if(err) return res.status(500).send( err.message);
+        res.status(200).jsonp(trabajador);
+    });
+
+    Trabajador.find({}, function(err, users) {
       if (err) return console.error(err);
       console.log('OK-POST : queriying users. ');
       res.json(users);
