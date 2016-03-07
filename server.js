@@ -2,8 +2,17 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
+
+var CatRoutes = require('./server/routes/cats.js');
+
 var Trabajador = require('./server/models/trabajador.js');
-var Cat = require('./server/models/cat.js');
+//var Cat = require('./server/models/cat.js');
+
+var catSchema = mongoose.Schema({
+  nombre: String,
+  color : String
+});
+
 
 var db;
 
@@ -29,6 +38,9 @@ app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
  });
+
+
+app.use('v1/cats/', CatRoutes);
 
 app.get('/', function (req, res) {
   res.send('Hello world from github ' + process.env.NODE_ENV);
@@ -73,6 +85,8 @@ app.get('/cats' , function (req, res) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   try {
+    var Cat = db.model('Cat', schema);
+
     Cat.find(function (err, docs) {
       if (err) {
       console.log('REEORmeow' + error);
@@ -86,11 +100,20 @@ app.get('/cats' , function (req, res) {
     console.log('FINALLY: connecting to Database. ' );
   }
 
+  // mongoose.connect('mongodb://test:test@ds039321.mlab.com:39321/prueba', function(err, res) {
+  //   if(err) {
+  //     console.log('ERROR: connecting to Database. ' + err);
+  //   }
+  // });
 });
 
 
 app.get('/catsCount' , function (req, res) {
+
   try {
+    var Cat = db.model('Cat', schema);
+
+
     Cat.count(function (err, count) {
       if (err) {
         console.log('REEORmeow' + error);
